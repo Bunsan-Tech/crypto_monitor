@@ -1,0 +1,84 @@
+<div id="wrapper">
+  <header id="js-header">
+      <div class="container clearfix">
+          <h1 id="logo">Crypto Monedas</h1>
+          <nav>
+              <a href="#bacon">HOME</a>
+          </nav>
+      </div>
+  </header>
+
+  <div id="main">
+      <div id="content">
+          <section>
+              <html lang="en">
+              <head>
+                <meta charset="utf-8" />
+                <title>Table Style</title>
+                <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+              </head>
+
+              <body>
+              <div class="table-title">
+              <h3>Tipos de cambio</h3>
+              </div>
+              <table class="table-fill">
+                <thead>
+                  <tr>
+                    <th class="text-left">Crypto Moneda</th>
+                    <th class="text-left">USD</th>
+                    <th class="text-left">MXN</th>
+                    <th class="text-left">Referencia</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>BTC</td>
+                    <td id="btc_usd">0.0</td>
+                    <td id="btc_mxn">0.0</td>
+                    <td><img id="btc_img" src="/images/even.png"></img></td>
+                  </tr>
+                  <tr>
+                    <td>ETH</td>
+                    <td id="eth_usd">0.0</td>
+                    <td id="eth_mxn">0.0</td>
+                    <td><img id="eth_img" src="/images/even.png"></img></td>
+                  </tr>
+                </tbody>
+              </table>
+                </body>
+          </section>
+     </div>
+  </div>
+   <footer>
+        <div class="container clearfix">
+          <div class ="col" id="col-1">
+            <ul>
+              <li>APPLES</li>
+              <li><a href="#0">Home</a></li>
+              <li><a href="#0">Services</a></li>
+              <li><a href="#0">Contact</a></li>
+              <li><a href="#0">Sitemap</a></li>
+            </ul>
+          </div>
+          <div  class ="col" id="col-2">
+            <ul>
+              <li>SOCIAL</li>
+              <li><a href="#0">Facebook</a></li>
+              <li><a href="#0">Twitter</a></li>
+              <li><a href="#0">LinkedIn</a></li>
+            </ul>
+          </div>
+          <div  class ="col" id="col-3">
+            <ul>
+              <li>SERVICES</li>
+              <li><a href="#0">Bacon</a></li>
+              <li><a href="#0">Sausage Services</a></li>
+              <li><a href="#0">Cheese</a></li>
+              <li><a href="#0">Cider Apples</a></li>
+            </ul>
+          </div>
+          <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
+        </div>
+  </footer>
+</div>
