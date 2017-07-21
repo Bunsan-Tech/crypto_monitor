@@ -17,6 +17,7 @@ defmodule CryptoMonitor.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", CryptoController, :index
+    get "/charts", CryptoController, :charts
   end
 
   # Other scopes may use custom stacks.

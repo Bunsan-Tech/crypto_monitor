@@ -1,5 +1,6 @@
 <div id="wrapper">
   <header id="js-header">
+  <script>require('app')</script>
       <div class="container clearfix">
           <h1 id="logo">Crypto</h1>
           <nav>
@@ -12,42 +13,18 @@
   <div id="main">
       <div id="content">
           <section>
-              <html lang="en">
+            <html lang="en">
               <head>
                 <meta charset="utf-8" />
                 <title>Table Style</title>
                 <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
               </head>
-
+              <input type="button" value="Capacity Chart" onclick="loadChart();">
               <body>
               <div class="table-title">
-              <h3>Tipos de cambio</h3>
-              </div>
-              <table class="table-fill">
-                <thead>
-                  <tr>
-                    <th class="text-left">Crypto Moneda</th>
-                    <th class="text-left">USD</th>
-                    <th class="text-left">MXN</th>
-                    <th class="text-left">Referencia</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>BTC</td>
-                    <td id="btc_usd">0.0</td>
-                    <td id="btc_mxn">0.0</td>
-                    <td><img id="btc_img" src="/images/even.png"></img></td>
-                  </tr>
-                  <tr>
-                    <td>ETH</td>
-                    <td id="eth_usd">0.0</td>
-                    <td id="eth_mxn">0.0</td>
-                    <td><img id="eth_img" src="/images/even.png"></img></td>
-                  </tr>
-                </tbody>
-              </table>
-                </body>
+              <h3>Historico</h3>
+              <div id="chartContainer" style="height: 400px; width: 100%;">
+            </div>
           </section>
      </div>
   </div>

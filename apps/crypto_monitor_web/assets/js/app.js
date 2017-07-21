@@ -18,4 +18,7 @@ import "phoenix_html"
 // Local files can be imported directly using relative
 // paths "./socket" or full ones "web/static/js/socket".
 
+import canvasjs from "./canvasjs.min"
+import linechart from "./linechart"
 import socket from "./socket"
+

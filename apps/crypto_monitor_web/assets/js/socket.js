@@ -4,7 +4,8 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
-
+import {ChartApp} from "./linechart.js"
+//var Chart = require('./linechart.js');
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
@@ -76,6 +77,8 @@ channel.on("btc_mxn", payload => {
 })
 
 channel.on("eth_usd", payload => {
+  var chart =  new ChartApp("1","2")
+  chart.print_scren()
   ethusd.innerHTML = `${payload.body}`
 })
 
