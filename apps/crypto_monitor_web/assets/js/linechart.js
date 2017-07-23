@@ -1,7 +1,7 @@
 export class ChartApp {
   constructor(series1,series2) {
-    this.series1 = series1
-    this.series2 = series2
+    this.series1 = []
+    this.series2 = []
     this.chart = new CanvasJS.Chart("chartContainer", {
         title: {
           text: "Crypto Currency",
@@ -11,7 +11,7 @@ export class ChartApp {
         axisX: {
           gridColor: "Silver",
           tickColor: "silver",
-          valueFormatString: "DD/MMM"
+          valueFormatString: "hh:mm:ss"
         },
         toolTip: {
           shared: true
@@ -59,9 +59,15 @@ export class ChartApp {
       });
   }
 
-  updateSeries1 () {
+  updateSeries1 (value) {
 		this.series1.push(
-      { x: new Date(2010, 0, 24), y: 500 });
+      { x: new Date(), y: value });
+		this.chart.render();    
+  };
+  
+  updateSeries2 (value) {
+		this.series2.push(
+      { x: new Date(), y: value });
 		this.chart.render();    
 	};
 
