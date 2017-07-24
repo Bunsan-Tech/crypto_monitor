@@ -24,8 +24,8 @@ defmodule CryptoMonitor.Web.Router do
     get "/", CryptoController, :index
     get "/charts", CryptoController, :charts
     get "/bussines", CryptoController, :bussines
-    post "/login", CryptoController, :login
-    post "/signup", CryptoController, :signup
+    post "/login", UserController, :login
+    post "/signup", UserController, :signup
   end
 
   scope "/", CryptoMonitor.Web do
@@ -33,7 +33,7 @@ defmodule CryptoMonitor.Web.Router do
     pipe_through :auth # Use the autenticated stack
     get "/balance", CryptoController, :balance
     post "/buy/:name", CryptoController, :buy_currency
-    get "/logout", CryptoController, :logout
+    get "/logout", UserController, :logout
   end
 
   # Other scopes may use custom stacks.

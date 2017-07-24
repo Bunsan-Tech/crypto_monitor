@@ -6,15 +6,84 @@ defmodule Crypto.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @required_fields ~w(name pin)
+  @optional_fields ~w(confirm_pin)
+
   schema "users" do
-    field :username
+    field :name
     field :pin
     field :confirm_pin
   end
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, [:pin, :username, :confirm_pin])
+      |> cast(params, [:pin, :name, :confirm_pin])
+  end
+
+  def login_changeset(user, params) do
+    user
+      |> cast(params, @required_fields)
+      |> validate_user
+      |> validate_pin
+  end
+
+  def signup_changeset(user, params) do
+    user
+      |> cast(params, @required_fields)
+      |> cast(params, @optional_fields)
+      |> validate_unique_user
+      |> validate_pin_match
+  end
+
+  def validate_user(changeset) do
+    user_name = get_field(changeset, :name)
+    case User.get_info(user_name) do
+      nil ->
+        add_error(changeset, :not_found, "User name #{user_name} not found")
+      _ ->
+        changeset
+    end
+  end
+
+  def validate_pin(changeset) do
+    if changeset.valid? do
+      input_pin = get_field(changeset, :pin)
+      user_name = get_field(changeset, :name)
+      %{"PIN" => pin} = User.get_info(user_name)
+      case pin == input_pin do
+        true ->
+          changeset
+        false ->
+          add_error(changeset, :wrong_pin, "User name or pin incorrect")
+      end
+    else
+      changeset
+    end
+  end
+
+  def validate_unique_user(changeset) do
+    user_name = get_field(changeset, :name)
+    case User.get_info(user_name) do
+      nil ->
+        changeset
+      _ ->
+        add_error(changeset, :not_found, "#{user_name} has been already taken")
+    end
+  end
+
+  def validate_pin_match(changeset) do
+    if changeset.valid? do
+      pin = get_field(changeset, :pin)
+      confirm_pin = get_field(changeset, :confirm_pin)
+      case pin == confirm_pin do
+        true ->
+          changeset
+        false ->
+          add_error(changeset, :wrong_pin, "Pins does not match")
+      end
+    else
+      changeset
+    end
   end
 
   def create(username, pin) do
@@ -55,7 +124,6 @@ defmodule Crypto.User do
     balance = get_balance(user, "usd")
     if balance >= ammount do
       new_balance = balance - ammount
-      IO.inspect new_balance
       User.update_founds(user, "usd", new_balance)
       {:ok, new_balance}
     else

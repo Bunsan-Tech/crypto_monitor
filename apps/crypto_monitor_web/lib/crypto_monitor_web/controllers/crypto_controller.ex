@@ -23,22 +23,6 @@ defmodule CryptoMonitor.Web.CryptoController do
     end
   end
 
-  def logout(conn, _params) do
-    conn
-      |> clear_session
-      |> redirect(to: "/bussines")
-  end
-
-  def signup(conn, params) do
-    pin = params["user"]["name"]
-    username = params["user"]["pin"]
-    User.create(username, pin)
-    conn
-      |> put_session(:user, username)
-      |> put_session(:token, pin)
-      |> redirect(to: "/bussines")
-  end
-
   def buy_currency(conn, params) do
     user = get_session(conn, :user)
     quantity =  params["currency"]["quantity"]
@@ -54,25 +38,5 @@ defmodule CryptoMonitor.Web.CryptoController do
     user_info = User.get_info(user)
     changeset = Currency.changeset(%Currency{})
     render conn, "balance.html", user_info: user_info, changeset: changeset
-  end
-
-  def login(conn, params) do
-    user = params["user"]["name"]
-    input_pin = params["user"]["pin"]
-    case User.get_info(user) do
-      nil ->
-        changeset = User.changeset(%User{})
-        render conn, "bussines.html", changeset: changeset
-      %{"PIN" => pin} ->
-        if input_pin == pin do
-          conn
-          |> put_session(:user, user)
-          |> put_session(:token, pin)
-          |> redirect(to: "/balance")
-        else
-          changeset = User.changeset(%User{})
-          render conn, "bussines.html", changeset: changeset
-        end
-    end
   end
 end
