@@ -28,7 +28,7 @@ defmodule CryptoMonitor.Bank do
     sell_value = quantity * Bank.get(currency)
     with {:ok, _} <- User.commit_transaction(:buy, user, sell_value),
          {:ok, _} <- Bank.deliver_founds(currency, quantity),
-         {:ok, _} <- User.update_founds(user, currency, quantity)
+         {:ok, _} <- User.increment_founds(user, currency, quantity)
     do
       {:ok, "Thank you"}
     else

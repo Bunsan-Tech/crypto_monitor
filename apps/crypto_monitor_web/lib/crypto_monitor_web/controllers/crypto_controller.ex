@@ -23,14 +23,27 @@ defmodule CryptoMonitor.Web.CryptoController do
     end
   end
 
+  def logout(conn, _params) do
+    conn
+      |> clear_session
+      |> redirect(to: "/bussines")
+  end
+
+  def signup(conn, params) do
+    pin = params["user"]["name"]
+    username = params["user"]["pin"]
+    User.create(username, pin)
+    conn
+      |> put_session(:user, username)
+      |> put_session(:token, pin)
+      |> redirect(to: "/bussines")
+  end
+
   def buy_currency(conn, params) do
     user = get_session(conn, :user)
     quantity =  params["currency"]["quantity"]
     currency =  params["name"]
     {quantity, _} = Integer.parse(quantity)
-    IO.inspect quantity
-    IO.inspect currency
-    IO.inspect user
     Bank.buy(currency, quantity, user)
     conn
       |> redirect(to: "/balance")

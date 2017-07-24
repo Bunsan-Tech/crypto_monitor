@@ -25,13 +25,15 @@ defmodule CryptoMonitor.Web.Router do
     get "/charts", CryptoController, :charts
     get "/bussines", CryptoController, :bussines
     post "/login", CryptoController, :login
+    post "/signup", CryptoController, :signup
   end
 
   scope "/", CryptoMonitor.Web do
     pipe_through :browser # Use the default browser stack
-    pipe_through :auth
+    pipe_through :auth # Use the autenticated stack
     get "/balance", CryptoController, :balance
     post "/buy/:name", CryptoController, :buy_currency
+    get "/logout", CryptoController, :logout
   end
 
   # Other scopes may use custom stacks.

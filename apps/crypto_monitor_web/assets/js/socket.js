@@ -71,6 +71,9 @@ class LiveUpdate {
     case "/charts":
       this.setupChartElements()
         break;
+    case "/balance":
+      this.setupBalanceElements()
+        break;
     default:
         break;
     }
@@ -118,6 +121,18 @@ class LiveUpdate {
 
     this.channel.on("eth_usd", payload => {
       chart.updateSeries1(payload.body)
+    })
+  }
+
+  setupBalanceElements(){
+    let btcusd = document.querySelector("#btcBuyPrice")
+    let ethusd = document.querySelector("#ethBuyPrice")
+    this.channel.on("btc_usd", payload => {
+      btcusd.innerHTML = `${payload.body} USD`
+    })
+
+    this.channel.on("eth_usd", payload => {
+      ethusd.innerHTML = `${payload.body} USD`
     })
   }
 }

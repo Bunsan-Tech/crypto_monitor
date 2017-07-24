@@ -48,7 +48,8 @@
                 </body>
               <br>
               <br>
-              <label for="pass">Comprar Etherum</label>
+              <label >Comprar Etherum a:</label>
+              <label id="ethBuyPrice">0.0 USD</label>
               <p>
               <%= form_for @changeset, "/buy/eth", fn f -> %>
               <div class="webdesigntuts-workshop"> 
@@ -59,9 +60,10 @@
               <br>
               <br>
               <br>
-              <label for="pass">Comprar Bitcoin</label>
+              <label for="pass">Comprar Bitcoin a: </label>
+              <label id="btcBuyPrice">0.0 USD</label>
               <br>
-              <%= form_for @changeset, "/buy/eth", fn f -> %>
+              <%= form_for @changeset, "/buy/btc", fn f -> %>
               <div class="webdesigntuts-workshop">
                 <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
                 <button action="submit">Comprar</button>

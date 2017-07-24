@@ -9,11 +9,19 @@ defmodule Crypto.User do
   schema "users" do
     field :username
     field :pin
+    field :confirm_pin
   end
 
   def changeset(user, params \\ :empty) do
     user
-    |> cast(params, [:pin])
+    |> cast(params, [:pin, :username, :confirm_pin])
+  end
+
+  def create(username, pin) do
+    ConCache.put(:users, username, %{"eth" => 0,
+                                     "btc" => 0,
+                                     "usd" => 10_000,
+                                     "PIN" => pin})
   end
 
   def get_balance(user, currency) do
@@ -37,10 +45,17 @@ defmodule Crypto.User do
     ConCache.put(:users, user, updated_info)
   end
 
+  def increment_founds(user, currency, ammount) do
+    user_info = ConCache.get(:users, user)
+    updated_info = %{user_info | currency => ammount + user_info[currency]}
+    ConCache.put(:users, user, updated_info)
+  end
+
   def commit_transaction(:buy, user, ammount) do
     balance = get_balance(user, "usd")
     if balance >= ammount do
       new_balance = balance - ammount
+      IO.inspect new_balance
       User.update_founds(user, "usd", new_balance)
       {:ok, new_balance}
     else
