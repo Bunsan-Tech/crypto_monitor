@@ -4,8 +4,7 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
-import {ChartApp} from "./linechart.js"
-//var Chart = require('./linechart.js');
+import {ChartApp} from "./chartapp.js"
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
@@ -53,46 +52,78 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // from connect if you don't care about authentication.
 socket.connect()
 
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("ex_monitor:rates", {})
-let btcusd = document.querySelector("#btc_usd")
-let btcmxn = document.querySelector("#btc_mxn")
-let ethusd = document.querySelector("#eth_usd")
-let ethmxn = document.querySelector("#eth_mxn")
-let ethimg = document.querySelector("#eth_img")
-let btcimg = document.querySelector("#btc_img")
+class LiveUpdate {
+  constructor() {
+    this.channel = socket.channel("ex_monitor:rates", {})
+  }
 
-var chart =  new ChartApp()
-chart.render()
+  join(){
+    this.channel.join()
+      .receive("ok", resp => { console.log("Joined successfully", resp) })
+      .receive("error", resp => { console.log("Unable to join", resp) })
+  }
 
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
+  setupElements(){
+    switch(window.location.pathname) {
+    case "/":
+      this.setupIndexElements()
+      break;
+    case "/charts":
+      this.setupChartElements()
+        break;
+    default:
+        break;
+    }
+  }
 
-channel.on("btc_usd", payload => {
-  chart.updateSeries2(payload.body)
-  btcusd.innerHTML = `${payload.body}`
-})
+  setupIndexElements(){
+    let btcusd = document.querySelector("#btc_usd")
+    let btcmxn = document.querySelector("#btc_mxn")
+    let ethusd = document.querySelector("#eth_usd")
+    let ethmxn = document.querySelector("#eth_mxn")
+    let ethimg = document.querySelector("#eth_img")
+    let btcimg = document.querySelector("#btc_img")
 
-channel.on("btc_mxn", payload => {
-  btcmxn.innerHTML = `${payload.body}`
-})
+    this.channel.on("btc_usd", payload => {
+      btcusd.innerHTML = `${payload.body}`
+    })
 
-channel.on("eth_usd", payload => {
-  chart.updateSeries1(payload.body)
-  ethusd.innerHTML = `${payload.body}`
-})
+    this.channel.on("btc_mxn", payload => {
+      btcmxn.innerHTML = `${payload.body}`
+    })
 
-channel.on("eth_mxn", payload => {
-  ethmxn.innerHTML = `${payload.body}`
-})
+    this.channel.on("eth_usd", payload => {
+      ethusd.innerHTML = `${payload.body}`
+    })
 
-channel.on("eth_img", payload => {
-  ethimg.src = `${payload.body}`
-})
+    this.channel.on("eth_mxn", payload => {
+      ethmxn.innerHTML = `${payload.body}`
+    })
 
-channel.on("btc_img", payload => {
-  btcimg.src = `${payload.body}`
-})
+    this.channel.on("eth_img", payload => {
+      ethimg.src = `${payload.body}`
+    })
 
+    this.channel.on("btc_img", payload => {
+      btcimg.src = `${payload.body}`
+    })
+  }
+
+  setupChartElements(){
+    var chart =  new ChartApp()
+    chart.render()
+    this.channel.on("btc_usd", payload => {
+      chart.updateSeries2(payload.body)
+    })
+
+    this.channel.on("eth_usd", payload => {
+      chart.updateSeries1(payload.body)
+    })
+  }
+}
+
+
+let liveUpdate = new LiveUpdate
+liveUpdate.join()
+liveUpdate.setupElements()
 export default socket

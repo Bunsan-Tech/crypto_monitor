@@ -21,33 +21,51 @@
               </head>
               <body>
               <div class="table-title">
-              <h3>Tipos de cambio</h3>
+              <h3>Saldos</h3>
               </div>
               <table class="table-fill">
                 <thead>
                   <tr>
                     <th class="text-left">Crypto Moneda</th>
-                    <th class="text-left">USD</th>
-                    <th class="text-left">MXN</th>
-                    <th class="text-left">Referencia</th>
+                    <th class="text-left">Saldo</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
+                    <td>USD</td>
+                    <td><%= @user_info["usd"] %></td>
+                  </tr>
+                  <tr>
                     <td>BTC</td>
-                    <td id="btc_usd">0.0</td>
-                    <td id="btc_mxn">0.0</td>
-                    <td><img id="btc_img" src="/images/even.png"></img></td>
+                    <td><%= @user_info["btc"] %></td>
                   </tr>
                   <tr>
                     <td>ETH</td>
-                    <td id="eth_usd">0.0</td>
-                    <td id="eth_mxn">0.0</td>
-                    <td><img id="eth_img" src="/images/even.png"></img></td>
+                    <td><%= @user_info["eth"] %></td>
                   </tr>
                 </tbody>
               </table>
                 </body>
+              <br>
+              <br>
+              <%= form_for @changeset, "/buy/eth", fn f -> %>
+              <div class="webdesigntuts-workshop"> 
+                <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
+                <button action="submit">Comprar</button>	    	
+              </div>
+              <% end %>
+              <br>
+              <br>
+              <br>
+              <div class="webdesigntuts-workshop">
+                <form action="" method="">		    
+                    <input type="number" placeholder="Comprar bit coin (BTC)">		    	
+                    <button>Comprar</button>
+                </form>
+              </div>
+              <br>
+              <br>
+              <br>
           </section>
      </div>
   </div>

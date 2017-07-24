@@ -7,6 +7,8 @@ export class ChartApp {
           text: "Crypto Currency",
           fontSize: 30
         },
+        zoomEnabled: true,
+        zoomType: "y",
         animationEnabled: true,
         axisX: {
           gridColor: "Silver",
@@ -30,7 +32,7 @@ export class ChartApp {
           type: "line",
           showInLegend: true,
           lineThickness: 2,
-          name: "BTC",
+          name: "ETH",
           markerType: "square",
           color: "#F08080",
           dataPoints: this.series1
@@ -38,7 +40,7 @@ export class ChartApp {
         {
           type: "line",
           showInLegend: true,
-          name: "ETH",
+          name: "BTC",
           color: "#20B2AA",
           lineThickness: 2,
           dataPoints: this.series2

@@ -13,6 +13,8 @@ defmodule CryptoMonitor.Application do
     import Supervisor.Spec, warn: false
 
     Supervisor.start_link([
+      supervisor(CryptoMonitor.Bank, []),
+      supervisor(ConCache, [[], [name: :users]]),
       supervisor(CryptoMonitor.BTC, [5]),
       supervisor(CryptoMonitor.ETH, [5])
     ], strategy: :one_for_one, name: CryptoMonitor.Supervisor)

@@ -19,6 +19,6 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 import canvasjs from "./canvasjs.min"
-import linechart from "./linechart"
+import chartapp from "./chartapp"
 import socket from "./socket"
 

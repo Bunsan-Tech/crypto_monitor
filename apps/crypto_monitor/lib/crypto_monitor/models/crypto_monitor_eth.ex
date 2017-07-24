@@ -3,6 +3,8 @@ defmodule CryptoMonitor.ETH do
   Exchange Rate Worker Monitor for Bit Coin
   """
   use GenServer
+  alias CryptoMonitor.Web.Endpoint, as: CryptoSocket
+  alias CryptoMonitor.Bank
 
   def start_link(time) do
     GenServer.start_link(__MODULE__, time)
@@ -28,19 +30,20 @@ defmodule CryptoMonitor.ETH do
     response = HTTPotion.get "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,MXN"
     if response.status_code == 200 do
       %{"MXN" => mxn, "USD" => usd} = Poison.decode!(response.body)
-      CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_usd", %{"body": usd})
-      CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_mxn", %{"body": mxn})
+      Bank.update("eth", usd)
+      CryptoSocket.broadcast("ex_monitor:rates", "eth_usd", %{"body": usd})
+      CryptoSocket.broadcast("ex_monitor:rates", "eth_mxn", %{"body": mxn})
       cond do
         usd > current_value ->
-          CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/up_arrow.png"})
+          CryptoSocket.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/up_arrow.png"})
         usd < current_value ->
-          CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/down_arrow.png"})
+          CryptoSocket.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/down_arrow.png"})
         true ->
-          CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/even.png"})
+          CryptoSocket.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/even.png"})
       end
       usd
     else
-      CryptoMonitor.Web.Endpoint.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/even.png"})
+      CryptoSocket.broadcast("ex_monitor:rates", "eth_img", %{"body": "/images/even.png"})
       current_value
     end
   end

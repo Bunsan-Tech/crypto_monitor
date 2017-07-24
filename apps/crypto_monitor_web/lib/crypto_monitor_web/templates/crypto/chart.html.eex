@@ -1,11 +1,11 @@
 <div id="wrapper">
   <header id="js-header">
-  <script>require('app')</script>
       <div class="container clearfix">
           <h1 id="logo">Crypto</h1>
           <nav>
               <a href="/">INICIO</a>
-              <a href="/charts">HISTORICO</a>
+              <a href="/charts">ESTADÍSTICAS</a>
+              <a href="/bussines">NEGOCIOS</a>
           </nav>
       </div>
   </header>
@@ -19,7 +19,6 @@
                 <title>Table Style</title>
                 <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
               </head>
-              <input type="button" value="Capacity Chart" onclick="loadChart();">
               <body>
               <div class="table-title">
               <h3>Historico</h3>
@@ -30,32 +29,6 @@
   </div>
    <footer>
         <div class="container clearfix">
-          <div class ="col" id="col-1">
-            <ul>
-              <li>APPLES</li>
-              <li><a href="#0">Home</a></li>
-              <li><a href="#0">Services</a></li>
-              <li><a href="#0">Contact</a></li>
-              <li><a href="#0">Sitemap</a></li>
-            </ul>
-          </div>
-          <div  class ="col" id="col-2">
-            <ul>
-              <li>SOCIAL</li>
-              <li><a href="#0">Facebook</a></li>
-              <li><a href="#0">Twitter</a></li>
-              <li><a href="#0">LinkedIn</a></li>
-            </ul>
-          </div>
-          <div  class ="col" id="col-3">
-            <ul>
-              <li>SERVICES</li>
-              <li><a href="#0">Bacon</a></li>
-              <li><a href="#0">Sausage Services</a></li>
-              <li><a href="#0">Cheese</a></li>
-              <li><a href="#0">Cider Apples</a></li>
-            </ul>
-          </div>
           <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
         </div>
   </footer>
