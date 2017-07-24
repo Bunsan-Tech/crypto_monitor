@@ -23,7 +23,7 @@ defmodule CryptoMonitor.Mixfile do
   def application do
     [
       mod: {CryptoMonitor.Application, []},
-      extra_applications: [:logger, :runtime_tools,:con_cache,:httpotion]
+      extra_applications: [:logger, :runtime_tools, :con_cache, :httpotion]
     ]
   end
 
