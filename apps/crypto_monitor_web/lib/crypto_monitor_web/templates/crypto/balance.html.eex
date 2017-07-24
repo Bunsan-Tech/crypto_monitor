@@ -48,6 +48,8 @@
                 </body>
               <br>
               <br>
+              <label for="pass">Comprar Etherum</label>
+              <p>
               <%= form_for @changeset, "/buy/eth", fn f -> %>
               <div class="webdesigntuts-workshop"> 
                 <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
@@ -57,12 +59,14 @@
               <br>
               <br>
               <br>
+              <label for="pass">Comprar Bitcoin</label>
+              <br>
+              <%= form_for @changeset, "/buy/eth", fn f -> %>
               <div class="webdesigntuts-workshop">
-                <form action="" method="">		    
-                    <input type="number" placeholder="Comprar bit coin (BTC)">		    	
-                    <button>Comprar</button>
-                </form>
+                <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
+                <button action="submit">Comprar</button>
               </div>
+              <% end %>
               <br>
               <br>
               <br>
