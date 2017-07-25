@@ -6,13 +6,13 @@ defmodule CryptoMonitor.Web.ErrorFallBackUserController do
     changeset = User.changeset(%User{},%{})
     conn
       |> put_flash(:error, message_error)
-      |> render "bussines.html", changeset: changeset
+      |> render("bussines.html", changeset: changeset)
   end
 
   def call(conn, [wrong_pin: {message_error, []}]) do
     changeset = User.changeset(%User{},%{})
     conn
       |> put_flash(:error, message_error)
-      |> render "bussines.html", changeset: changeset
+      |> render("bussines.html", changeset: changeset)
   end
 end
