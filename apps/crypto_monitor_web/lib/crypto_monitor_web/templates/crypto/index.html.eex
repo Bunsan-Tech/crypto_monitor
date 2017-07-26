@@ -1,59 +1,54 @@
 <div id="wrapper">
-  <header id="js-header">
-      <div class="container clearfix">
-          <h1 id="logo">Crypto</h1>
-          <nav>
-              <a href="/">INICIO</a>
-              <a href="/charts">ESTADÍSTICAS</a>
-              <a href="/bussines">NEGOCIOS</a>
-          </nav>
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a href="#">PlainDisplay</a></h1>
       </div>
-  </header>
-
-  <div id="main">
-      <div id="content">
-          <section>
-              <html lang="en">
-              <head>
-                <meta charset="utf-8" />
-                <title>Table Style</title>
-                <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
-              </head>
-              <body>
-              <div class="table-title">
-              <h3>Tipos de cambio</h3>
-              </div>
-              <table class="table-fill">
-                <thead>
-                  <tr>
-                    <th class="text-left">Crypto Moneda</th>
-                    <th class="text-left">USD</th>
-                    <th class="text-left">MXN</th>
-                    <th class="text-left">Referencia</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>BTC</td>
-                    <td id="btc_usd">0.0</td>
-                    <td id="btc_mxn">0.0</td>
-                    <td><img id="btc_img" src="/images/even.png"></img></td>
-                  </tr>
-                  <tr>
-                    <td>ETH</td>
-                    <td id="eth_usd">0.0</td>
-                    <td id="eth_mxn">0.0</td>
-                    <td><img id="eth_img" src="/images/even.png"></img></td>
-                  </tr>
-                </tbody>
-              </table>
-                </body>
-          </section>
-     </div>
+      <div id="menu">
+        <ul>
+          <li class="current_page_item"><a href="/" accesskey="1" title="">INICIO</a></li>
+          <li><a href="/charts" accesskey="2" title="">ESTADÍSTICAS</a></li>
+          <li><a href="/bussines" accesskey="3" title="">NEGOCIOS</a></li>
+          <li><a href="/leader_board" accesskey="4" title="">LÍDERES</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-   <footer>
-        <div class="container clearfix">
-          <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
+  <div id="extra" class="container">
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>Table Style</title>
+        <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+      </head>
+      <body>
+        <div class="table-title">
+          <h3>Tipos de cambio</h3>
         </div>
-  </footer>
+        <table class="table-fill">
+          <thead>
+            <tr>
+              <th class="text-left">Crypto Moneda</th>
+              <th class="text-left">USD</th>
+              <th class="text-left">MXN</th>
+              <th class="text-left">Referencia</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BTC</td>
+              <td id="btc_usd">0.0</td>
+              <td id="btc_mxn">0.0</td>
+              <td><img id="btc_img" src="/images/even.png"></img></td>
+            </tr>
+            <tr>
+              <td>ETH</td>
+              <td id="eth_usd">0.0</td>
+              <td id="eth_mxn">0.0</td>
+              <td><img id="eth_img" src="/images/even.png"></img></td>
+            </tr>
+          </tbody>
+        </table>
+      </body>
+  </div>
 </div>

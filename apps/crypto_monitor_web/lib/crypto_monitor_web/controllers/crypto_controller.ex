@@ -33,6 +33,16 @@ defmodule CryptoMonitor.Web.CryptoController do
       |> redirect(to: "/balance")
   end
 
+  def sell_currency(conn, params) do
+    user = get_session(conn, :user)
+    quantity =  params["currency"]["quantity"]
+    currency =  params["name"]
+    {quantity, _} = Integer.parse(quantity)
+    Bank.sell(currency, quantity, user)
+    conn
+      |> redirect(to: "/balance")
+  end
+
   def balance(conn, _params) do
     user = get_session(conn, :user)
     user_info = User.get_info(user)

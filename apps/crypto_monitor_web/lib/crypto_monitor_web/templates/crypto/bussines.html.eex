@@ -1,20 +1,23 @@
 <div id="wrapper">
-  <header id="js-header">
-      <div class="container clearfix">
-          <h1 id="logo">Crypto</h1>
-          <nav>
-              <a href="/">INICIO</a>
-              <a href="/charts">ESTADÍSTICAS</a>
-              <a href="/bussines">NEGOCIOS</a>
-          </nav>
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a href="#">PlainDisplay</a></h1>
       </div>
-  </header>
-  
- 
-  <div id="main">
-      <div id="content">
-          <section>
-              <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <div id="menu">
+        <ul>
+          <li><a href="/" accesskey="1" title="">INICIO</a></li>
+          <li><a href="/charts" accesskey="2" title="">ESTADÍSTICAS</a></li>
+          <li class="current_page_item"><a href="/bussines" accesskey="3" title="">NEGOCIOS</a></li>
+          <li><a href="/leader_board" accesskey="4" title="">LÍDERES</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="extra" class="container">
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
               <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
               <div class="login-wrap">
                 <div class="login-html">
@@ -70,8 +73,9 @@
                     </div>
                 </div>
             </div>
-          </section>
-          <script>
+  </div>
+</div>
+<script>
             let tab1 = document.getElementById("tab-1")
             let tab2 = document.getElementById("tab-2")
             let sing_up = document.getElementById("signuphtm")
@@ -92,11 +96,3 @@
             console.log(sing_up)
             
             </script>
-     </div>
-  </div>
-   <footer>
-        <div class="container clearfix">
-          <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
-        </div>
-  </footer>
-</div>

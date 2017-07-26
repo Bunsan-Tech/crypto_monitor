@@ -1,83 +1,79 @@
 <div id="wrapper">
-  <header id="js-header">
-      <div class="container clearfix">
-          <h1 id="logo">Crypto</h1>
-          <nav>
-              <a href="/">INICIO</a>
-              <a href="/charts">ESTADÍSTICAS</a>
-              <a href="/bussines">NEGOCIOS</a>
-          </nav>
+  <div id="header-wrapper">
+    <div id="header" class="container">
+      <div id="logo">
+        <h1><a href="#">PlainDisplay</a></h1>
       </div>
-  </header>
-
-  <div id="main">
-      <div id="content">
-          <section>
-              <html lang="en">
-              <head>
-                <meta charset="utf-8" />
-                <title>Table Style</title>
-                <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
-              </head>
-              <body>
-              <div class="table-title">
-              <h3>Saldos</h3>
-              </div>
-              <table class="table-fill">
-                <thead>
-                  <tr>
-                    <th class="text-left">Crypto Moneda</th>
-                    <th class="text-left">Saldo</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>USD</td>
-                    <td><%= @user_info["usd"] %></td>
-                  </tr>
-                  <tr>
-                    <td>BTC</td>
-                    <td><%= @user_info["btc"] %></td>
-                  </tr>
-                  <tr>
-                    <td>ETH</td>
-                    <td><%= @user_info["eth"] %></td>
-                  </tr>
-                </tbody>
-              </table>
-                </body>
-              <br>
-              <br>
-              <label >Comprar Etherum a:</label>
-              <label id="ethBuyPrice">0.0 USD</label>
-              <p>
-              <%= form_for @changeset, "/buy/eth", fn f -> %>
-              <div class="webdesigntuts-workshop"> 
-                <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
-                <button action="submit">Comprar</button>	    	
-              </div>
-              <% end %>
-              <br>
-              <br>
-              <br>
-              <label for="pass">Comprar Bitcoin a: </label>
-              <label id="btcBuyPrice">0.0 USD</label>
-              <br>
-              <%= form_for @changeset, "/buy/btc", fn f -> %>
-              <div class="webdesigntuts-workshop">
-                <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
-                <button action="submit">Comprar</button>
-              </div>
-              <% end %>
-              <br>
-              <br>
-              <br>
-          </section>
-     </div>
+      <div id="menu">
+        <ul>
+          <li><a href="/" accesskey="1" title="">INICIO</a></li>
+          <li><a href="/charts" accesskey="2" title="">ESTADÍSTICAS</a></li>
+          <li class="current_page_item"><a href="/bussines" accesskey="3" title="">NEGOCIOS</a></li>
+          <li><a href="/leader_board" accesskey="4" title="">LÍDERES</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
-   <footer>
-        <div class="container clearfix">
-          <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
-        </div>
-  </footer>
+  <div id="extra_small" class="container">
+    <div class="table-title">
+      <h3>Saldos</h3>
+    </div>
+    <table class="table-fill">
+      <thead>
+        <tr>
+          <th class="text-left">Crypto Moneda</th>
+          <th class="text-left">Saldo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>USD</td>
+          <td><%= @user_info["usd"] %></td>
+        </tr>
+        <tr>
+          <td>BTC</td>
+          <td><%= @user_info["btc"] %></td>
+        </tr>
+        <tr>
+          <td>ETH</td>
+          <td><%= @user_info["eth"] %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="extra_small" class="container">
+    <div class="testbox">
+      <h1>ETHERUM</h1> 
+      <label id="ethBuyPrice">0.0 USD</label>
+      <hr>
+      <div class="centered">
+        <%= form_for @changeset, "/buy/eth", fn f -> %>
+        <%= number_input f, :quantity, class: "input" %>
+        <button class="buyButton" action="submit">Comprar</button>
+        <% end %>
+      </div>
+      <P>
+      <div class="centered">
+        <%= form_for @changeset, "/sell/eth", fn f -> %>
+        <%= number_input f, :quantity, class: "input" %>
+        <button class="buyButton" action="submit">Vender</button>
+        <% end %>
+      </div>
+      <p>
+      <h1>BITCOIN</h1>
+      <label id="btcBuyPrice">0.0 USD</label>
+      <hr>
+      <div class="centered">
+        <%= form_for @changeset, "/buy/btc", fn f -> %>
+        <%= number_input f, :quantity, class: "input",autofocus: "autofocus" %>
+        <button class="buyButton" action="submit">Comprar</button>
+        <% end %>
+      </div>
+      <P>
+      <div class="centered">
+        <%= form_for @changeset, "/sell/btc", fn f -> %>
+        <%= number_input f, :quantity, class: "input" %>
+        <button class="buyButton" action="submit">Vender</button>
+        <% end %>
+      </div>
 </div>

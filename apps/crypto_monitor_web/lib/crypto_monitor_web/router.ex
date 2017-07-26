@@ -33,6 +33,7 @@ defmodule CryptoMonitor.Web.Router do
     pipe_through :auth # Use the autenticated stack
     get "/balance", CryptoController, :balance
     post "/buy/:name", CryptoController, :buy_currency
+    post "/sell/:name", CryptoController, :sell_currency
     get "/logout", UserController, :logout
   end
 

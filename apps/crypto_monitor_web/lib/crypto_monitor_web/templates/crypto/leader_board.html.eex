@@ -1,0 +1,62 @@
+<div id="wrapper">
+  <header id="js-header">
+      <div class="container clearfix">
+          <h1 id="logo">Crypto</h1>
+          <nav>
+              <a href="/">INICIO</a>
+              <a href="/charts">ESTADÍSTICAS</a>
+              <a href="/bussines">NEGOCIOS</a>
+              <a href="/leader_board">LÍDERES</a>
+          </nav>
+      </div>
+  </header>
+
+  <div id="main">
+      <div id="content">
+          <section>
+              <html lang="en">
+              <head>
+                <meta charset="utf-8" />
+                <title>Table Style</title>
+                <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+              </head>
+              <body>
+              <div class="table-title">
+              <h3>LÍDERES</h3>
+              </div>
+              <table class="table-fill">
+                <thead>
+                  <tr>
+                    <th class="text-left">Usuario</th>
+                    <th class="text-left">BTC</th>
+                    <th class="text-left">ETH</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>misaelpc</td>
+                    <td>5</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>erika</td>
+                    <td>4</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <td>noe</td>
+                    <td>3</td>
+                    <td>4</td>
+                  </tr>
+                </tbody>
+              </table>
+                </body>
+          </section>
+     </div>
+  </div>
+   <footer>
+        <div class="container clearfix">
+          <div id="copy">&#xa9; Designed and built by <a href="https://twitter.com/lilianakastilio">@liianakastilio</a> 2013 - 2014</div>
+        </div>
+  </footer>
+</div>

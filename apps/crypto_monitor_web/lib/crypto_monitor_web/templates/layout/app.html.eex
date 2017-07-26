@@ -6,17 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Crypto Moneda</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
-
   <body>
-    <div class="container">
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-    </div> <!-- /container -->
+    <%= render @view_module, @view_template, assigns %> 
+    <div id="copyright" class="container">
+      <p>CRYPTO BANK | Phoenix Framework | BUNSAN 2017</p>
+    </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
