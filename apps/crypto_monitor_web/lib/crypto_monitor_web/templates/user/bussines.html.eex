@@ -10,6 +10,7 @@
           <li><a href="/charts" accesskey="2" title="">ESTADÍSTICAS</a></li>
           <li class="current_page_item"><a href="/bussines" accesskey="3" title="">NEGOCIOS</a></li>
           <li><a href="/leader_board" accesskey="4" title="">LÍDERES</a></li>
+          <li><a href="/logout" accesskey="4" title=""><%= render_logout(@conn) %></a></li>
         </ul>
       </div>
     </div>
