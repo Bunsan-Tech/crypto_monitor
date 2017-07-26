@@ -4,6 +4,8 @@ defmodule CryptoMonitor.Web.CryptoController do
   alias Crypto.Currency
   alias CryptoMonitor.Bank
 
+  action_fallback CryptoMonitor.Web.ErrorFallBackCurrencyController
+
   def index(conn, _params) do
     render conn, "index.html"
   end
@@ -25,22 +27,40 @@ defmodule CryptoMonitor.Web.CryptoController do
 
   def buy_currency(conn, params) do
     user = get_session(conn, :user)
-    quantity =  params["currency"]["quantity"]
-    currency =  params["name"]
-    {quantity, _} = Integer.parse(quantity)
-    Bank.buy(currency, quantity, user)
-    conn
-      |> redirect(to: "/balance")
+    changeset = Currency.buy_changeset(%Currency{}, params["currency"])
+    if changeset.valid? do
+      quantity =  params["currency"]["quantity"]
+      currency =  params["name"]
+      {quantity, _} = Integer.parse(quantity)
+      case Bank.buy(currency, quantity, user) do
+        :ok ->
+          conn
+            |> redirect(to: "/balance")
+        {:error, message} ->
+          {:error, message}
+      end
+    else
+      changeset.errors
+    end
   end
 
   def sell_currency(conn, params) do
     user = get_session(conn, :user)
-    quantity =  params["currency"]["quantity"]
-    currency =  params["name"]
-    {quantity, _} = Integer.parse(quantity)
-    Bank.sell(currency, quantity, user)
-    conn
-      |> redirect(to: "/balance")
+    changeset = Currency.sell_changeset(%Currency{}, params["currency"])
+    if changeset.valid? do
+      quantity =  params["currency"]["quantity"]
+      currency =  params["name"]
+      {quantity, _} = Integer.parse(quantity)
+      case Bank.sell(currency, quantity, user) do
+        :ok ->
+          conn
+            |> redirect(to: "/balance")
+        {:error, message} ->
+          {:error, message}
+      end
+    else
+      changeset.errors
+    end
   end
 
   def balance(conn, _params) do
@@ -48,5 +68,9 @@ defmodule CryptoMonitor.Web.CryptoController do
     user_info = User.get_info(user)
     changeset = Currency.changeset(%Currency{}, %{})
     render conn, "balance.html", user_info: user_info, changeset: changeset
+  end
+
+  def leader_board(conn, _params) do
+    render conn, "leader_board.html"
   end
 end

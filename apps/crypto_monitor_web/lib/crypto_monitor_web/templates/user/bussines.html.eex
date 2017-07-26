@@ -2,7 +2,7 @@
   <div id="header-wrapper">
     <div id="header" class="container">
       <div id="logo">
-        <h1><a href="#">PlainDisplay</a></h1>
+        <h1><a href="#">Crypto Bank</a></h1>
       </div>
       <div id="menu">
         <ul>
@@ -76,23 +76,23 @@
   </div>
 </div>
 <script>
-            let tab1 = document.getElementById("tab-1")
-            let tab2 = document.getElementById("tab-2")
-            let sing_up = document.getElementById("signuphtm")
-            let sing_in = document.getElementById("signinhtm")
-            sing_up.style.display = 'none';
+let tab1 = document.getElementById("tab-1")
+let tab2 = document.getElementById("tab-2")
+let sing_up = document.getElementById("signuphtm")
+let sing_in = document.getElementById("signinhtm")
+sing_up.style.display = 'none';
 
-            function singin(){
-                sing_up.style.display = 'none';
-                sing_in.style.display = 'inline';
-            }
+function singin(){
+    sing_up.style.display = 'none';
+    sing_in.style.display = 'inline';
+}
 
-            function singup(){
-                sing_up.style.display = 'inline';
-                sing_in.style.display = 'none';
-            }
+function singup(){
+    sing_up.style.display = 'inline';
+    sing_in.style.display = 'none';
+}
 
-            console.log("test")
-            console.log(sing_up)
-            
-            </script>
+console.log("test")
+console.log(sing_up)
+
+</script>

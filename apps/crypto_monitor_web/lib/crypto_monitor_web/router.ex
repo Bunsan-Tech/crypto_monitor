@@ -24,6 +24,7 @@ defmodule CryptoMonitor.Web.Router do
     get "/", CryptoController, :index
     get "/charts", CryptoController, :charts
     get "/bussines", CryptoController, :bussines
+    get "/leader_board", CryptoController, :leader_board
     post "/login", UserController, :login
     post "/signup", UserController, :signup
   end

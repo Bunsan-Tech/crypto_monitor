@@ -2,7 +2,7 @@
   <div id="header-wrapper">
     <div id="header" class="container">
       <div id="logo">
-        <h1><a href="#">PlainDisplay</a></h1>
+        <h1><a href="#">Crypto Bank</a></h1>
       </div>
       <div id="menu">
         <ul>
@@ -17,7 +17,6 @@
   <div id="extra" class="container">
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
               <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
               <div class="login-wrap">
                 <div class="login-html">
