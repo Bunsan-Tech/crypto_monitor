@@ -33,7 +33,7 @@ defmodule CryptoMonitor.Web.CryptoController do
       currency =  params["name"]
       {quantity, _} = Integer.parse(quantity)
       case Bank.buy(currency, quantity, user) do
-        :ok ->
+        {:ok, _} ->
           conn
             |> redirect(to: "/balance")
         {:error, message} ->
@@ -52,7 +52,7 @@ defmodule CryptoMonitor.Web.CryptoController do
       currency =  params["name"]
       {quantity, _} = Integer.parse(quantity)
       case Bank.sell(currency, quantity, user) do
-        :ok ->
+        {:ok, _} ->
           conn
             |> redirect(to: "/balance")
         {:error, message} ->

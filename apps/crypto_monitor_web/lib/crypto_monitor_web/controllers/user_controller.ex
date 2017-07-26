@@ -27,7 +27,7 @@ defmodule CryptoMonitor.Web.UserController do
     if changeset.valid? do
       user_name = params["user"]["name"]
       pin = params["user"]["pin"]
-      User.create(user_name, pin)
+      User.create(changeset)
       conn
         |> put_session(:user, user_name)
         |> put_session(:token, pin)

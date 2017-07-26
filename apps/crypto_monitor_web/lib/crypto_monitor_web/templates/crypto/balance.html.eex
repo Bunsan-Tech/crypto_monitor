@@ -30,15 +30,15 @@
       <tbody>
         <tr>
           <td>USD</td>
-          <td><%= @user_info["usd"] %></td>
+          <td><%= render_number(@user_info.usd) %></td>
         </tr>
         <tr>
           <td>BTC</td>
-          <td><%= @user_info["btc"] %></td>
+          <td><%= render_number(@user_info.btc) %></td>
         </tr>
         <tr>
           <td>ETH</td>
-          <td><%= @user_info["eth"] %></td>
+          <td><%= render_number(@user_info.eth) %></td>
         </tr>
       </tbody>
     </table>

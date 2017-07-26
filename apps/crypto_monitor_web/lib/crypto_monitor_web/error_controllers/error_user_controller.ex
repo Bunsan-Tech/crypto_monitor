@@ -3,7 +3,7 @@ defmodule CryptoMonitor.Web.ErrorFallBackUserController do
   alias Crypto.User
 
   def call(conn, [not_found: {message_error, []}]) do
-    changeset = User.changeset(%User{},%{})
+    changeset = User.changeset(%User{}, %{})
     conn
       |> put_flash(:error, message_error)
       |> render("bussines.html", changeset: changeset)
