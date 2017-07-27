@@ -1,4 +1,7 @@
 defmodule CryptoMonitor.Updater do
+  @moduledoc """
+  Module for receive updates from bank
+  """
   use GenServer
   alias CryptoMonitor.Web.Endpoint, as: CryptoSocket
 
