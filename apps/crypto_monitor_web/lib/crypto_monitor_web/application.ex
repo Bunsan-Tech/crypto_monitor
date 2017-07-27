@@ -11,6 +11,7 @@ defmodule CryptoMonitor.Web.Application do
     children = [
       # Start the endpoint when the application starts
       supervisor(CryptoMonitor.Web.Endpoint, []),
+      supervisor(CryptoMonitor.Updater, [:crypto_updater]),
       # Start your own worker by calling: CryptoMonitor.Web.Worker.start_link(arg1, arg2, arg3)
       # worker(CryptoMonitor.Web.Worker, [arg1, arg2, arg3]),
     ]

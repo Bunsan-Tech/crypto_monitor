@@ -95,6 +95,14 @@ defmodule Crypto.User do
     Repo.insert(changeset)
   end
 
+  def get_top_10 do
+    query = from u in Crypto.User,
+      order_by: [desc: u.btc],
+      order_by: [desc: u.eth],
+      select: u
+    Repo.all(query)
+  end
+
   def get_balance(user, currency) do
     user_info = get_info(user)
     Map.from_struct(user_info)[String.to_atom(currency)]

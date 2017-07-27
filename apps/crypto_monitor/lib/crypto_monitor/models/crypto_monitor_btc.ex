@@ -3,7 +3,7 @@ defmodule CryptoMonitor.BTC do
   Exchange Rate Worker Monitor for Bit Coin
   """
   use GenServer
-  alias CryptoMonitor.Web.Endpoint, as: CryptoSocket
+  
   alias CryptoMonitor.Bank
 
   def start_link(time) do
@@ -31,19 +31,19 @@ defmodule CryptoMonitor.BTC do
     if response.status_code == 200 do
       %{"MXN" => mxn, "USD" => usd} = Poison.decode!(response.body)
       Bank.update("btc", usd)
-      CryptoSocket.broadcast("ex_monitor:rates", "btc_usd", %{"body": usd})
-      CryptoSocket.broadcast("ex_monitor:rates", "btc_mxn", %{"body": mxn})
+      GenServer.call :crypto_updater, {:update, "btc_usd", usd}
+      GenServer.call :crypto_updater, {:update, "btc_mxn", mxn}
       cond do
         usd > current_value ->
-          CryptoSocket.broadcast("ex_monitor:rates", "btc_img", %{"body": "/images/up_arrow.png"})
+          GenServer.call :crypto_updater, {:update, "btc_img", "/images/up_arrow.png"}
         usd < current_value ->
-          CryptoSocket.broadcast("ex_monitor:rates", "btc_img", %{"body": "/images/down_arrow.png"})
+          GenServer.call :crypto_updater, {:update, "btc_img", "/images/down_arrow.png"}
         true ->
-          CryptoSocket.broadcast("ex_monitor:rates", "btc_img", %{"body": "/images/even.png"})
+          GenServer.call :crypto_updater, {:update, "btc_img", "/images/even.png"}
       end
       usd
     else
-      CryptoSocket.broadcast("ex_monitor:rates", "btc_img", %{"body": "/images/even.png"})
+      GenServer.call :crypto_updater, {:update, "btc_img", "/images/even.png"}
       current_value
     end
   end

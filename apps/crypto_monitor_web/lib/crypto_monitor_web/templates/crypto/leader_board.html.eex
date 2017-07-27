@@ -29,21 +29,13 @@
          </tr>
       </thead>
       <tbody>
-         <tr>
-            <td>misaelpc</td>
-            <td>5</td>
-            <td>3</td>
-         </tr>
-         <tr>
-            <td>erika</td>
-            <td>4</td>
-            <td>3</td>
-         </tr>
-         <tr>
-            <td>noe</td>
-            <td>3</td>
-            <td>4</td>
-         </tr>
+        <%= for user <- @users do %>
+            <tr>
+                <td><%= user.name %></td>
+                <td><%= user.btc %></td>
+                <td><%= user.eth %></td>
+            </tr>
+        <% end %>
       </tbody>
    </table>
 </div>

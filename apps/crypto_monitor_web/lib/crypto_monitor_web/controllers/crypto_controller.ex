@@ -71,6 +71,7 @@ defmodule CryptoMonitor.Web.CryptoController do
   end
 
   def leader_board(conn, _params) do
-    render conn, "leader_board.html"
+    users = Crypto.User.get_top_10
+    render conn, "leader_board.html", users: users
   end
 end
