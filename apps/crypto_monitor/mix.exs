@@ -23,7 +23,7 @@ defmodule CryptoMonitor.Mixfile do
   def application do
     [
       mod: {CryptoMonitor.Application, []},
-      extra_applications: [:logger, :runtime_tools, :con_cache, :httpotion]
+      extra_applications: [:logger, :runtime_tools, :con_cache, :httpotion, :ecto_mnesia]
     ]
   end
 
@@ -36,6 +36,7 @@ defmodule CryptoMonitor.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [{:httpotion, "~> 3.0.2"},
+     {:ecto_mnesia, "~> 0.9.0"},
      {:postgrex, ">= 0.0.0"},
      {:ecto, "~> 2.1"},
      {:con_cache, "~> 0.12.0"}

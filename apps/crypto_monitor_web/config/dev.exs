@@ -29,7 +29,11 @@ config :crypto_monitor_web, CryptoMonitor.Web.Endpoint,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
+config :crypto_monitor, :load_test,
+  value: 2
 
+#config :mnesia, dir: to_charlist(Path.join(File.cwd!, "priv/data"))
+#Application.get_env(:mnesia, dir:)
 # Watch static and templates for browser reloading.
 config :crypto_monitor_web, CryptoMonitor.Web.Endpoint,
   live_reload: [

@@ -110,6 +110,10 @@ class LiveUpdate {
     this.channel.on("btc_img", payload => {
       btcimg.src = `${payload.body}`
     })
+
+    this.channel.on("listen_test", payload => {
+      console.log(payload)
+    })
   }
 
   setupChartElements(){

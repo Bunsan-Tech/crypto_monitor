@@ -31,6 +31,8 @@ defmodule CryptoMonitor.BTC do
     if response.status_code == 200 do
       %{"MXN" => mxn, "USD" => usd} = Poison.decode!(response.body)
       Bank.update("btc", usd)
+      now = Ecto.DateTime.from_erl(:erlang.localtime)
+      Crypto.Metrics.create(%{date: now, value: usd, currency: "btc"})
       GenServer.call :crypto_updater, {:update, "btc_usd", usd}
       GenServer.call :crypto_updater, {:update, "btc_mxn", mxn}
       cond do

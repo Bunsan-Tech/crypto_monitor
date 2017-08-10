@@ -13,6 +13,7 @@ defmodule CryptoMonitor.Application do
     import Supervisor.Spec, warn: false
 
     Supervisor.start_link([
+      supervisor(CryptoMnesiaMonitor.Repo, []),
       supervisor(CryptoMonitor.Repo, []),
       supervisor(CryptoMonitor.Bank, []),
       supervisor(ConCache, [[], [name: :users]]),
