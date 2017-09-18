@@ -141,7 +141,6 @@ class LiveUpdate {
   }
 }
 
-
 let liveUpdate = new LiveUpdate
 liveUpdate.join()
 liveUpdate.setupElements()

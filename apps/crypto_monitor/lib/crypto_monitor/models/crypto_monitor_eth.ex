@@ -4,6 +4,7 @@ defmodule CryptoMonitor.ETH do
   """
   use GenServer
   alias CryptoMonitor.Bank
+  alias Crypto.Metrics
 
   def start_link(time) do
     GenServer.start_link(__MODULE__, time)
@@ -26,13 +27,13 @@ defmodule CryptoMonitor.ETH do
   end
 
   defp update_data(current_value) do
-    response = HTTPotion.get "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,MXN"
+    response = HTTPotion.get "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,MXN", [timeout: 15_000]
     if response.status_code == 200 do
       %{"MXN" => mxn, "USD" => usd} = Poison.decode!(response.body)
       Bank.update("eth", usd)
       Bank.update("btc", usd)
       now = Ecto.DateTime.from_erl(:erlang.localtime)
-      Crypto.Metrics.create(%{date: now, value: usd, currency: "eth"})
+      Metrics.create(%{date: now, value: usd, currency: "eth"})
       GenServer.call :crypto_updater, {:update, "eth_usd", usd}
       GenServer.call :crypto_updater, {:update, "eth_mxn", mxn}
       cond do

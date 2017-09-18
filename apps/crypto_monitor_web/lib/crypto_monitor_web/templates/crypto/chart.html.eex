@@ -1,3 +1,9 @@
+<script>
+  var btcHistory = [];
+  <%= for metric <- @btc_metrics do %>
+    btcHistory.push({ x: new Date(), y: 7 });
+  <% end %>
+</script>
 <div id="wrapper">
   <div id="header-wrapper">
     <div id="header" class="container">

@@ -31,9 +31,10 @@ defmodule Crypto.Metrics do
     Repo.all(query)
   end
 
-  def get_metrics({:last, 200}, currency) do
+  def get_metrics({:last, limit}, currency) do
     query = from m in Crypto.Metrics,
       where: m.currency == ^currency,
+      limit: ^limit,
       select: m
     Repo.all(query)
   end

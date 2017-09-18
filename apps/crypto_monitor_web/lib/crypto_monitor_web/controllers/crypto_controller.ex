@@ -11,7 +11,8 @@ defmodule CryptoMonitor.Web.CryptoController do
   end
 
   def charts(conn, _params) do
-    render conn, "chart.html"
+    btc_metrics = Crypto.Metrics.get_metrics("btc")
+    render conn, "chart.html",btc_metrics: btc_metrics
   end
 
   def bussines(conn, _params) do
