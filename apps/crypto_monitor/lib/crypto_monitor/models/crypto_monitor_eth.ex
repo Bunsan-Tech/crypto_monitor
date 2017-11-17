@@ -3,8 +3,6 @@ defmodule CryptoMonitor.ETH do
   Exchange Rate Worker Monitor for Bit Coin
   """
   use GenServer
-  alias CryptoMonitor.Bank
-  alias Crypto.Metrics
 
   def start_link(time) do
     GenServer.start_link(__MODULE__, time)
@@ -26,28 +24,7 @@ defmodule CryptoMonitor.ETH do
     Process.send_after(self(), :refresh, (time_in_seconds * 1000))
   end
 
-  defp update_data(current_value) do
-    response = HTTPotion.get "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,MXN", [timeout: 15_000]
-    if response.status_code == 200 do
-      %{"MXN" => mxn, "USD" => usd} = Poison.decode!(response.body)
-      Bank.update("eth", usd)
-      Bank.update("btc", usd)
-      now = Ecto.DateTime.from_erl(:erlang.localtime)
-      Metrics.create(%{date: now, value: usd, currency: "eth"})
-      GenServer.call :crypto_updater, {:update, "eth_usd", usd}
-      GenServer.call :crypto_updater, {:update, "eth_mxn", mxn}
-      cond do
-        usd > current_value ->
-          GenServer.call :crypto_updater, {:update, "eth_img", "/images/up_arrow.png"}
-        usd < current_value ->
-          GenServer.call :crypto_updater, {:update, "eth_img", "/images/down_arrow.png"}
-        true ->
-          GenServer.call :crypto_updater, {:update, "eth_img", "/images/even.png"}
-      end
-      usd
-    else
-      GenServer.call :crypto_updater, {:update, "eth_img", "/images/even.png"}
-      current_value
-    end
+  defp update_data(_current_value) do
+    HTTPotion.get "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD,MXN", [timeout: 15_000]
   end
 end

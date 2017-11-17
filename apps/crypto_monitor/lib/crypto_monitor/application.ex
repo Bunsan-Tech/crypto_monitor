@@ -16,9 +16,7 @@ defmodule CryptoMonitor.Application do
       supervisor(CryptoMnesiaMonitor.Repo, []),
       supervisor(CryptoMonitor.Repo, []),
       supervisor(CryptoMonitor.Bank, []),
-      supervisor(ConCache, [[], [name: :users]]),
-      supervisor(CryptoMonitor.BTC, [5]),
-      supervisor(CryptoMonitor.ETH, [5])
+      supervisor(ConCache, [[], [name: :users]])
     ], strategy: :one_for_one, name: CryptoMonitor.Supervisor)
   end
 end
