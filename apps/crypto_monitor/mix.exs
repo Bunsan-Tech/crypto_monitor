@@ -38,7 +38,8 @@ defmodule CryptoMonitor.Mixfile do
     [{:httpotion, "~> 3.0.2"},
      {:ecto_mnesia, "~> 0.9.0"},
      {:postgrex, ">= 0.0.0"},
-     {:ecto, "~> 2.1"},
+     {:ecto, "~> 2.1.6"},
+     {:poison, "~> 3.1"},
      {:con_cache, "~> 0.12.0"}
     ]
   end

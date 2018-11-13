@@ -6,6 +6,9 @@
 use Mix.Config
 
 # General application configuration
+
+config :phoenix, :json_library, Jason
+
 config :crypto_monitor_web,
   namespace: CryptoMonitor.Web,
   ecto_repos: [CryptoMonitor.Repo]
